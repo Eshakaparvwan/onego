@@ -1,11 +1,13 @@
 import requests
 import json
 
-# page_id=109214341345652
-itoken='EAAoZBLaZASEOUBANW5eA5O8V2YtpEckgIoeKdffuRgwAsiLi8ZAvZBQuBOTnfFMS0LCJVEUGKzYV7X7caKZCa2p1Wm2r8Ejo22YzIDGbWibmTO0peZCg2diq05uyZB0pxajYATwOXqP6si4ZBTwru7sRxIZATLjXUge9JZA8yjzd1t6cS1KxZCgwP07cvw6d19MpsoQvb3el1f0iJrkZALRZBLv4Ne3EqCY2koX0ogqE8mtFRAhitl2lIIcUoOquPIZAZAHhmIZD'
-atoken='EAAoZBLaZASEOUBADSoHXZC0AoR6uj4Xl5GFZByzr9JSAgzbIyZBedtoN1yIIBdtmOgQ60xZB3c7s4UyC985Q9BQTOoZAMT83xJvEV4iJDhNpBxCaywRSsT4ZBFlz7NvhC9UIOTdFst6fArDXU3dh5RYgYi67PWTvDp39FuEU969KMqNFvgZBhVaFLSt1IrruGI65hUYoq9jnkQGoMY70uWrsb'
+ 
 
-def post_img(fb_id,img_url,msg):
+# page_id=109214341345652
+itoken='EAAoZBLaZASEOUBAPmxBoBtEA3E9zf6PoJ534E6vwxuBbQWm9e9WwS4o4egEMxhdDzL885ZA8jhN7QWRD58pBmaffuvJutMS7VZCaNL4JLGfYiqfTfq8UNfpfQ08oswbE4grQnej3jLmz594ZBwwH70sOJS54OCRdSA4g3mgw00spYMEZBZATgZABlooNpzvCqJlKZB9cOzAZAanRIDpnleZC7ZBORtT9Tbkr3nDJxC0GRboZCtp6ikMmuh06B'
+# atoken='EAAoZBLaZASEOUBABQ2UCbhyIIOocwqLETNVaPzfjSbQtHZAVrqSncmqwLPqhdqTcJDalDh0wanpyH10a4FMKY0ro8kteYcysq3Jpf3py0cNpgc0DZCOt1QWPGZCGiPZB47oquqZCjozniZBds31aRZA50ZAADlVayVZB0SsfgsA2uAD9MlX8czyj69MZAZCMGUqqTuABHUQEdfEs1g5QcLDJT6icu'
+
+def post_img(fb_id,img_url,msg,atoken):
     msg=msg
     page_id=fb_id
     image_url='https://graph.facebook.com/{}/photos'.format(page_id)
@@ -20,13 +22,18 @@ def post_img(fb_id,img_url,msg):
     print(r.text)
     # insta_post()
 
-def post_status(page_id,msg):
-    page_id=page_id
+def post_status(page_id,msg,token):
+    # print(type(atoken),type(token),type(page_id))
+    atoken=token
+    print(atoken)
+    # print(token)
+    # page_id=page_id
     post_url='https://graph.facebook.com/{}/feed'.format(page_id)
+    
     mesg=msg
     payload={
              'message':msg,
-             'access_token':atoken
+             'access_token':atoken,
                }  
     r=requests.post(post_url,data=payload)
     print(r.text)
@@ -60,4 +67,3 @@ def insta_post(insta_id,img_url,msg):
         print(r.text)
     else:
         print("we have problm")
-    
